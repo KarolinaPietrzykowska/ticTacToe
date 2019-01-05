@@ -1,0 +1,5 @@
+pl/app/tests/ServerMainTest.class
+pl/app/tests/ServerServiceTest.class
+pl/app/tests/ServerStageTest.class
+pl/app/tests/GameTest.class
+pl/app/tests/ServerSuite.class

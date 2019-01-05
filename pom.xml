@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pl.app.pw</groupId>
+  <artifactId>game</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.9.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Dodane do testów - TestFX -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>4.0.13-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Dodane do testów - TestFX -->
+    </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.19.1</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>tests</testSourceDirectory>
+        <resources>
+      
+            <resource>
+                <directory>src</directory>
+                    <excludes>
+                        <exclude>**/*.java</exclude>
+                    </excludes>
+            </resource>
+      
+            <resource>
+                <directory>pics</directory>
+                    <excludes>
+                        <exclude>**/*.java</exclude>
+                    </excludes>
+            </resource>
+
+        </resources>
+
+        <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>2.21.0</version>
+                  <configuration>
+                      <excludes>
+                          <exclude>**/*Test.java</exclude>
+                      </excludes>
+                      <includes>
+                          <include>**/*Suite.java</include>
+                      </includes>
+                  </configuration>
+              </plugin>
+          </plugins>
+      </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-assembly-plugin</artifactId>
+		        <version>2.4.1</version>
+		            <configuration>
+			<!-- get all project dependencies -->
+			            <descriptorRefs>
+				            <descriptorRef>jar-with-dependencies</descriptorRef>
+			            </descriptorRefs>
+					<!-- MainClass in mainfest make a executable jar -->
+					    <archive>
+					        <manifest>
+						        <mainClass>pl.app.common.Main</mainClass>
+					        </manifest>
+					    </archive>
+
+				    </configuration>
+
+                    <executions>
+				        <execution>
+					        <id>make-assembly</id>
+                                        <!-- bind to the packaging phase -->
+					            <phase>package</phase>
+					                <goals>
+						                <goal>single</goal>
+                      <!--  <goal>surefire-report:report</goal> raport w html -->
+					                </goals>
+				        </execution>
+				    </executions>
+      </plugin>
+
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+            <encoding>UTF-8</encoding>
+          <doctitle>My API for ${project.name} ${project.version}</doctitle> <!-- Used by javadoc:javadoc goal -->
+          <windowtitle>My API for ${project.name} ${project.version}</windowtitle> <!-- Used by javadoc:javadoc goal -->
+          <testDoctitle>My Test API for ${project.name} ${project.version}</testDoctitle> <!-- Used by javadoc:test-javadoc goal -->
+          <testWindowtitle>My Test API for ${project.name} ${project.version}</testWindowtitle> <!-- Used by javadoc:test-javadoc goal -->
+
+        </configuration>
+
+
+      </plugin>
+
+    </plugins>
+  </build>
+</project>
